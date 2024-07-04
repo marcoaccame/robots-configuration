@@ -71,6 +71,36 @@
                      board can consume the CAN packets sent by the CAN boards without losing info (if it happens, diagnostics messages are sent which complain about loss of skin data).  
                   -->              
                 <param name="TXrateOfRegularROPs">      5                   </param> 
+                
+                
+                <!-- Contains logging related to the RUNNING mode 
+                     To mantain backwards compatibility of the xml file, if this group is not present the default values will be
+                     - IMMEDIATE.emitRXDOTXoverflow = true
+                     - PERIODIC.period = 10
+                     - PERIODIC.emitRXDOTXstatistics = false
+                  -->                 
+                <group name="LOGGING">
+                
+                    <!-- Contains enabling / disabling of logging that must be emitted immediately as soon as the condition appears --> 
+                    <group name="IMMEDIATE">
+                        <!-- enable / disable the emission of diagnostics related to the measured execution time of RX higher than the configured
+                             maxTimeOfRXactivity and similarly for DO and tx
+                          -->
+                        <param name="emitRXDOTXoverflow">       true        </param>
+                    </group>
+                    
+                    <!-- Contains enabling / disabling of logging that must be emitted periodically -->
+                    <group name="PERIODIC">
+                        <!-- the period expressed in seconds in the interval [10.0, 60.0] -->
+                        <param name="period">                   10          </param>
+                        <!-- enable / disable the periodic emission of diagnostics about to the statistics of teh execution time of the RX, DO and TX phase
+                             in the form of minimul, average and maximum values.
+                          -->                        
+                        <param name="emitRXDOTXstatistics">     true        </param>
+                    </group>
+
+                </group>
+                
 
             </group>              
                         
